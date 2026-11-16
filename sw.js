@@ -1,4 +1,4 @@
-const CACHE = 'lusi-v22';
+const CACHE = 'lusi-v23';
 const FILES = ['./', './index.html', './style.css', './app.js', './wallet.js', './manifest.json'];
 
 self.addEventListener('install', e => {
