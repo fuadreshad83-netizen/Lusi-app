@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Lusi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff7a00">
+<link rel="apple-touch-icon" href="https://res.cloudinary.com/ticeqh1h/image/upload/w_180,h_180,c_fill/1794724944223.jpg">
+</head>
+<body data-theme="light">
+
+<section id="splash" class="screen active">
+  <div class="logoBox"><img src="https://res.cloudinary.com/ticeqh1h/image/upload/1794724944223.jpg" alt="Lusi" class="logoImg"><span class="shine"></span></div>
+  <p class="welcome" data-i="welcome">Welcome</p>
+</section>
+
+<section id="login" class="screen">
+  <div class="logoBox sm"><img src="https://res.cloudinary.com/ticeqh1h/image/upload/1794724944223.jpg" alt="Lusi" class="logoImg"><span class="shine"></span></div>
+  <p class="sub" data-i="loginSub">Share your moments with the world</p>
+  <div class="lbtns">
+    <button class="lbtn" data-act="google"><span class="gicon">G</span><span data-i="signGoogle">Sign in with Google</span></button>
+    <button class="lbtn" data-act="goRegister"><span class="ico">✉</span><span data-i="createAcc">Create account</span></button>
+    <button class="lbtn" data-act="goLogin"><span class="ico">👤</span><span data-i="loginId">Log in with ID</span></button>
+  </div>
+  <p class="hint" data-i="terms">By continuing you agree to our terms</p>
+</section>
+
+<section id="authScreen" class="screen">
+  <form id="authForm" class="authcard" novalidate>
+    <button type="button" class="icb" data-act="backLogin" aria-label="back">‹</button>
+    <h2 id="authTitle"></h2>
+    <div id="regOnly" class="stack" hidden>
+      <input id="fName" maxlength="30" data-p="name" placeholder="Name" autocomplete="off">
+      <input id="rEmail" type="email" autocapitalize="off" autocomplete="off" data-p="email" placeholder="Email">
+      <input id="rPhone" type="tel" inputmode="tel" autocomplete="off" data-p="phoneOpt" placeholder="Phone (optional)">
+      <select id="rGender"><option value="m" data-i="male">Male</option><option value="f" data-i="female">Female</option></select>
+      <select id="rTheme"><option value="light" data-i="light">Light</option><option value="dark" data-i="dark">Dark</option></select>
+    </div>
+    <input id="fId" type="text" autocapitalize="off" autocomplete="off" data-p="userId" placeholder="ID">
+    <input id="pass" type="password" data-p="password" placeholder="Password" autocomplete="current-password">
+    <small id="pwHint" class="hint2"></small>
+    <small id="authErr" class="err"></small>
+    <button class="btn" id="authBtn" type="submit"></button>
+    <button type="button" class="linkbtn" id="authSwitch"></button>
+  </form>
+</section>
+
+<section id="setupScreen" class="screen">
+  <form id="setupForm" class="authcard" novalidate>
+    <h2 data-i="setupTitle">Complete your profile</h2>
+    <input id="sName" maxlength="30" data-p="name" placeholder="Name" autocomplete="off">
+    <select id="sGender"><option value="m" data-i="male">Male</option><option value="f" data-i="female">Female</option></select>
+    <input id="sAge" type="number" inputmode="numeric" min="5" max="120" data-p="age" placeholder="Age" autocomplete="off">
+    <input id="sPass" type="password" data-p="password" placeholder="Password" autocomplete="new-password">
+    <small class="hint2" data-i="pwRule">At least 6 characters, with letters and numbers</small>
+    <small id="setupErr" class="err"></small>
+    <button class="btn" type="submit" data-i="saveBtn">Save</button>
+  </form>
+</section>
+
+<section id="app" class="screen">
+  <header class="top">
+    <button id="rbtn" class="ibtn" aria-label="refresh">⟳</button>
+    <div class="seg" id="seg">
+      <button data-h="short" data-i="shortVideo">Short Video</button>
+      <button data-h="photo" data-i="photoM">Photo</button>
+    </div>
+    <button id="sbtn" class="ibtn" aria-label="search">🔍</button>
+  </header>
+  <main id="main"><div id="feedBox"></div><div id="pageBox"></div></main>
+
+  <div id="upPill" hidden>
+    <svg class="upr" viewBox="0 0 36 36"><circle class="u-trk" cx="18" cy="18" r="15"/><circle class="u-arc" id="upArc" cx="18" cy="18" r="15"/></svg>
+    <div class="upt"><b id="upNum">0%</b><small id="upTxt">Posting</small></div>
+    <button id="upX" aria-label="cancel">✕</button>
+  </div>
+  <div id="dlBadge" hidden></div>
+
+  <nav class="bottom">
+    <button data-v="home"><span>⌂</span><span data-i="home">Home</span></button>
+    <button data-v="friends"><span>👥</span><span data-i="friends">Friends</span></button>
+    <button id="plus" aria-label="add"><span class="pin">+</span></button>
+    <button data-v="inbox"><span>💬</span><span data-i="inbox">Inbox</span><u id="badge" hidden></u></button>
+    <button data-v="profile"><span>👤</span><span data-i="profile">Profile</span></button>
+  </nav>
+</section>
+
+<div class="sview" id="searchView">
+  <div class="shdr">
+    <button class="icb" data-act="sclose" aria-label="back">‹</button>
+    <div class="sin"><input id="sInput" type="search" data-p="searchPh" placeholder="Name or ID" autocomplete="off"></div>
+  </div>
+  <div id="sBody"></div>
+</div>
+
+<input type="file" id="fileV" accept="video/*" hidden>
+<input type="file" id="fileP" accept="image/*" hidden>
+<input type="file" id="fileAv" accept="image/*" hidden>
+<input type="file" id="fileBan" accept="image/*" hidden>
+<input type="file" id="fileChat" accept="image/*" hidden>
+
+<div class="modal" id="addSheet"><div class="sheet">
+  <div class="grab"></div>
+  <button class="opt" data-act="pickV"><span class="oi">🎬</span><span data-i="video">Video</span></button>
+  <button class="opt" data-act="pickP"><span class="oi">🖼</span><span data-i="photo">Photo</span></button>
+  <button class="opt" data-act="cam"><span class="oi">📷</span><span data-i="camera">Camera</span></button>
+  <button class="btn ghost" data-close="addSheet" data-i="cancel">Cancel</button>
+</div></div>
+
+<div class="modal cam" id="camModal"><div class="camwrap">
+  <video id="camVid" autoplay playsinline muted></video>
+  <div class="camtop">
+    <button data-close="camModal" aria-label="close">✕</button>
+    <span id="recDot" class="rec" hidden>● REC</span>
+    <span class="ph"></span>
+  </div>
+  <div class="camside"><button id="flip" aria-label="flip">⟲</button></div>
+  <div class="camctl">
+    <div class="camModes">
+      <button id="mPhoto" class="mode on" data-i="photoM">Photo</button>
+      <button id="mVideo" class="mode" data-i="videoM">Video</button>
+    </div>
+    <button id="shutter" aria-label="capture"></button>
+  </div>
+</div></div>
+
+<div class="modal full" id="compModal"><div class="cpage">
+  <header class="chdr">
+    <button class="icb" data-close="compModal" aria-label="back">‹</button>
+    <b data-i="preview">Preview</b>
+    <span class="ph"></span>
+  </header>
+  <div class="cbody">
+    <div id="compPrev"></div>
+    <textarea id="compCap" rows="3" maxlength="500" data-p="caption" placeholder="Caption"></textarea>
+  </div>
+  <div class="cfoot">
+    <button class="btn ghost" data-close="compModal" data-i="cancel">Cancel</button>
+    <button class="btn" id="compPost" data-i="post">Post</button>
+  </div>
+</div></div>
+
+<div class="modal full" id="cropModal"><div class="cpage">
+  <header class="chdr">
+    <button class="icb" data-close="cropModal" aria-label="back">‹</button>
+    <b data-i="cropT">Crop</b>
+    <span class="ph"></span>
+  </header>
+  <div class="cbody cropbody">
+    <div class="cropstage" id="cropStage">
+      <img id="cropImg" alt="">
+      <div class="cropframe" id="cropFrame"></div>
+    </div>
+    <p class="crophint" data-i="cropHint">Drag to move, use the slider to zoom</p>
+    <input id="cropZoom" type="range" min="1" max="3" step="0.01" value="1">
+  </div>
+  <div class="cfoot">
+    <button class="btn ghost" data-close="cropModal" data-i="cancel">Cancel</button>
+    <button class="btn" id="cropOk" data-i="cropSave">Save</button>
+  </div>
+</div></div>
+
+<div class="modal" id="idModal"><div class="sheet center">
+  <h3 data-i="yourNewId">Your new ID</h3>
+  <div class="bigid" id="bigId"></div>
+  <p class="hint2" data-i="keepId">Keep this ID and your password.</p>
+  <button class="btn" data-close="idModal" data-i="done">Done</button>
+</div></div>
+
+<div class="modal" id="listModal"><div class="sheet">
+  <div class="cmthd"><b id="listTitle"></b><button class="icb" data-close="listModal">✕</button></div>
+  <div id="listBody"></div>
+</div></div>
+
+<div class="modal" id="menuModal"><div class="sheet" id="menuBox"></div></div>
+<div class="modal" id="settingsModal"><div class="sheet" id="settingsBox"></div></div>
+<div class="modal" id="editModal"><div class="sheet" id="editBox"></div></div>
+
+<div class="modal" id="cmtModal"><div class="sheet cmtsheet">
+  <div class="cmthd"><span id="cmtCount"></span><button class="icb" data-close="cmtModal" aria-label="close">✕</button></div>
+  <div id="cmtList" class="cmtlist"></div>
+  <div class="emobar2" id="emoBar"></div>
+  <div id="replyBar" class="replybar" hidden><span id="replyTxt"></span><button data-act="cancelReply">✕</button></div>
+  <div class="cmtin"><input id="cmtInput" maxlength="300" data-p="writeComment" placeholder="Add comment..." autocomplete="off"><button class="btn small" data-act="sendCmt">➤</button></div>
+</div></div>
+
+<div class="modal" id="chatModal"><div class="sheet chat">
+  <div class="chead">
+    <button class="icb" data-close="chatModal" aria-label="back">‹</button>
+    <div id="chatHead" class="who2"></div>
+  </div>
+  <div id="chatList"></div>
+  <div id="recBar" class="recbar" hidden>
+    <span class="rdot"></span><span id="recTime">0:00</span>
+    <button class="btn ghost small" data-act="cancelRec">✕</button>
+  </div>
+  <div class="crow">
+    <button class="icb" data-act="attachChat" aria-label="image">🖼</button>
+    <input id="chatInput" maxlength="1000" data-p="typeMsg" placeholder="Type a message..." autocomplete="off">
+    <button class="icb" id="micBtn" data-act="mic" aria-label="voice">🎤</button>
+    <button class="btn small" data-act="sendChat">➤</button>
+  </div>
+</div></div>
+
+<div class="modal" id="newChatModal"><div class="sheet">
+  <div class="cmthd"><b data-i="newChat">New chat</b><button class="icb" data-close="newChatModal">✕</button></div>
+  <input id="ncInput" data-p="searchPh" placeholder="Name or ID" autocomplete="off">
+  <div id="ncList"></div>
+</div></div>
+
+<div class="modal" id="sendModal"><div class="sheet">
+  <div class="cmthd"><b data-i="shareTo">Share to</b><button class="icb" data-close="sendModal">✕</button></div>
+  <div id="sendList" class="sendgrid"></div>
+</div></div>
+
+<div class="modal" id="viewModal"><div class="sheet">
+  <button class="btn ghost" data-close="viewModal" data-i="done">Done</button>
+  <div id="viewBody"></div>
+</div></div>
+
+<div class="modal" id="lusiModal"><div class="sheet" id="lusiBox"></div></div>
+
+<div id="toast"></div>
+<script type="module" src="app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
